@@ -298,7 +298,18 @@ cpn.add_dataset(
 )
 
 cpn.add_dataset(
-    name="ttw_wlnu_amcatnlo",
+    name="ttz_qq_amcatnlo",
+    id=14231322,
+    processes=[procs.ttz_qq],
+    keys=[
+        "/TTZToQQ_TuneCP5_13TeV-amcatnlo-pythia8/RunIISummer20UL17NanoAODv9-106X_mc2017_realistic_v9-v1/NANOAODSIM",  # noqa
+    ],
+    n_files=35,
+    n_events=13822000,
+)
+
+cpn.add_dataset(
+    name="ttw_nlu_amcatnlo",
     id=14228083,
     processes=[procs.ttw_wlnu],
     info=dict(
