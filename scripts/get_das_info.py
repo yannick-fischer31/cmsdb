@@ -80,14 +80,15 @@ identifier_map = {
     "_MT-173p5_": "mtop_up",
     "_withDipoleRecoil_": "with_dipole_recoil",
     "_dipoleRecoilOn_": "dipole_recoil_on",
+
     # dataset types that I have no use for but want to keep anyways
-    "_MT-166p5_": "comment",
-    "_MT-169p5_": "comment",
-    "_MT-175p5_": "comment",
-    "_MT-178p5_": "comment",
-    "_DS_TuneCP5_": "comment",
-    "_TuneCP5_ERDOn_": "comment",
-    "_TuneCH3_": "comment",
+    # "_MT-166p5_": "comment",
+    # "_MT-169p5_": "comment",
+    # "_MT-175p5_": "comment",
+    # "_MT-178p5_": "comment",
+    # "_DS_TuneCP5_": "comment",
+    # "_TuneCP5_ERDOn_": "comment",
+    # "_TuneCH3_": "comment",
     # dataset types that I want to skip completely
     # "example_key": "ignore",
     # nominal entry as the last one such that other dataset types get priority
@@ -122,9 +123,15 @@ def convert_top(data: dict, placeholder="PLACEHOLDER") -> str:
 
     if dataset_type == "nominal":
         return f"""cpn.add_dataset(
+<<<<<<< Updated upstream
     name="{placeholder}{generator}",
     id={data['dataset_id']},
     processes=[procs.{placeholder}],
+=======
+    name="data_mueg",
+    id={data['dataset_id']},
+    processes=[procs.mueg],
+>>>>>>> Stashed changes
     info=dict(
         nominal=DatasetInfo(
             keys=[

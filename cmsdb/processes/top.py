@@ -17,8 +17,13 @@ __all__ = [
     "st_schannel_t", "st_schannel_t_lep", "st_schannel_t_had",
     "st_schannel_tbar", "st_schannel_tbar_lep", "st_schannel_tbar_had",
     "ttv",
-    "ttz", "ttz_zqq", "ttz_zlep_m10toinf", "ttz_zll_m4to50", "ttz_zll_m50toinf", "ttz_znunu",
-    "ttw", "ttw_wlnu", "ttw_wqq",
+# <<<<<<< Updated upstream
+#     "ttz", "ttz_zqq", "ttz_zlep_m10toinf", "ttz_zll_m4to50", "ttz_zll_m50toinf", "ttz_znunu",
+#     "ttw", "ttw_wlnu", "ttw_wqq",
+# =======
+    "ttz", "ttz_llnunu_m10","ttz_qq",
+    "ttw", "ttw_lnu", "ttw_qq",
+# >>>>>>> Stashed changes
     "ttvv",
     "ttzz", "ttwz", "ttww",
 ]
@@ -431,6 +436,12 @@ ttz_zqq = ttz.add_process(
     name="ttz_zqq",
     id=3120,
     xsecs=multiply_xsecs(ttz, const.br_z.qq),
+)
+
+ttz_qq = ttz.add_process(
+    name="ttz_qq",  
+    id=3120,
+    xsecs={13: Number(0.1)},  # TODO
 )
 
 ttw = ttv.add_process(

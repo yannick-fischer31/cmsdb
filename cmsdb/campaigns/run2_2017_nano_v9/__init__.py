@@ -40,3 +40,4 @@ import cmsdb.campaigns.run2_2017_nano_v9.higgs  # noqa
 import cmsdb.campaigns.run2_2017_nano_v9.hh2bbtautau  # noqa
 import cmsdb.campaigns.run2_2017_nano_v9.hh2bbww  # noqa
 import cmsdb.campaigns.run2_2017_nano_v9.mttbar  # noqa
+import cmsdb.campaigns.run2_2017_nano_v9.azh  # noqa
