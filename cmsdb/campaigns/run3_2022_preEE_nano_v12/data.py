@@ -27,6 +27,7 @@ cpn.add_dataset(
     n_events=138427345,
     aux={
         "era": "C",
+        "jec_era":"RunCD",
     },
 )
 
@@ -42,6 +43,7 @@ cpn.add_dataset(
     n_events=75468381,
     aux={
         "era": "D",
+        "jec_era":"RunCD",
     },
 )
 
@@ -63,6 +65,7 @@ cpn.add_dataset(
     n_events=186,
     aux={
         "era": "A",
+        "jec_era":"RunCD",
     },
 )
 
@@ -78,6 +81,7 @@ cpn.add_dataset(
     n_events=11074301,
     aux={
         "era": "B",
+        "jec_era":"RunCD",
     },
 )
 
@@ -93,6 +97,7 @@ cpn.add_dataset(
     n_events=263689151,
     aux={
         "era": "C",
+        "jec_era":"RunCD",
     },
 )
 
@@ -108,6 +113,7 @@ cpn.add_dataset(
     n_events=89134996,
     aux={
         "era": "D",
+        "jec_era":"RunCD",
     },
 )
 
@@ -138,6 +144,7 @@ cpn.add_dataset(
     ),
     aux={
         "era": "A",
+        "jec_era":"RunCD",
     },
 )
 
@@ -162,6 +169,7 @@ cpn.add_dataset(
     ),
     aux={
         "era": "B",
+        "jec_era":"RunCD",
     },
 )
 
@@ -184,6 +192,7 @@ cpn.add_dataset(
     ),
     aux={
         "era": "C",
+        "jec_era":"RunCD",
     },
 )
 
@@ -206,5 +215,60 @@ cpn.add_dataset(
     ),
     aux={
         "era": "D",
+        "jec_era":"RunCD",
+    },
+)
+
+
+#
+# Double Muon
+#
+
+
+cpn.add_dataset(
+    name="data_doublemu_a",
+    id=14783253,
+    is_data=True,
+    processes=[procs.data_doublemu],
+    keys=[
+        "/DoubleMuon/Run2022A-22Sep2023-v1/NANOAOD",  # noqa
+    ],
+    n_files=4,
+    n_events=25309,
+    aux={
+        "era": "A",
+        "jec_era":"RunCD",
+    },
+)
+
+cpn.add_dataset(
+    name="data_doublemu_b",
+    id=14784149,
+    is_data=True,
+    processes=[procs.data_doublemu],
+    keys=[
+        "/DoubleMuon/Run2022B-22Sep2023-v1/NANOAOD",  # noqa
+    ],
+    n_files=7,
+    n_events=929009,
+    aux={
+        "era": "B",
+        "jec_era":"RunCD",
+    },
+)
+
+cpn.add_dataset(
+    name="data_doublemu_c",
+    id=14784138,
+    is_data=True,
+    processes=[procs.data_doublemu],
+    keys=[
+        "/DoubleMuon/Run2022C-22Sep2023-v1/NANOAOD",  # noqa
+    ],
+    n_files=12,
+    n_events=4646904,
+    aux={
+        "era": "C",
+        "jec_era":"RunCD",
     },
 )
