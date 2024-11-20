@@ -8,6 +8,7 @@ from __future__ import annotations
 import subprocess
 import json
 from argparse import ArgumentParser
+import re
 
 
 def get_generator_name(name: str) -> str:
@@ -30,11 +31,18 @@ def convert_default(data: dict, placeholder="PLACEHOLDER") -> str:
     """
     Function that converts dataset info into one order Dataset per query
     """
+    pattern = r"_MA-(\d+)_MH-(\d+)"
+
     generator = get_generator_name(data["name"])
+    match = re.search(pattern, data["name"])
+    if match:
+        ma = match.group(1)  # Wert von MA
+        mh = match.group(2)  # Wert von MH
+    # print(f"MA: {ma}, MH: {mh}")
     return f"""cpn.add_dataset(
-    name="{placeholder}{generator}",
+    name="azh_htt_zll_a{ma}_h{mh}{generator}",
     id={data['dataset_id']},
-    processes=[procs.{placeholder}],
+    processes=[procs.azh_htt_zll_a{ma}_h{mh}],
     keys=[
         "{data['name']}",  # noqa
     ],
@@ -123,15 +131,9 @@ def convert_top(data: dict, placeholder="PLACEHOLDER") -> str:
 
     if dataset_type == "nominal":
         return f"""cpn.add_dataset(
-<<<<<<< Updated upstream
     name="{placeholder}{generator}",
     id={data['dataset_id']},
     processes=[procs.{placeholder}],
-=======
-    name="data_mueg",
-    id={data['dataset_id']},
-    processes=[procs.mueg],
->>>>>>> Stashed changes
     info=dict(
         nominal=DatasetInfo(
             keys=[

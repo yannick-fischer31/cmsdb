@@ -10,7 +10,7 @@ __all__ = [
     # "data_tau", "data_met", "data_pho",
     # "data_egamma", "data_muoneg", "data_jetht",
 # =======
-    "data", "data_e", "data_mu", "data_tau", "data_met", "data_pho", "data_egamma", "data_jetht", "data_doublemu", "data_doubleeg", "data_mueg",
+    "data", "data_e", "data_mu", "data_tau", "data_met", "data_pho", "data_egamma", "data_jetht", "data_doublemu", "data_doubleeg", "data_muoneg",
 # >>>>>>> Stashed changes
 ]
 
@@ -70,16 +70,16 @@ data_egamma = data.add_process(
     is_data=True,
     label=r"Data $e/\gamma$",
 )
-# data_muoneg = data.add_process(
-#     name="data_muoneg",
-#     id=70,
-#     is_data=True,
-#     label=r"Data $\mu e/\gamma$",
-# )
+data_muoneg = data.add_process(
+    name="data_muoneg",
+    id=70,
+    is_data=True,
+    label=r"Data $\mu e/\gamma$",
+)
 
 data_doublemu = data.add_process(
     name="data_doublemu",
-    id=70,
+    id=90,
     is_data=True,
     label=r"Data double $\mu$",
 )
@@ -91,12 +91,12 @@ data_doubleeg = data.add_process(
     label=r"Data double $e \gamma$",
 )
 
-data_mueg = data.add_process(
-    name="data_mueg",
-    id=90,
-    is_data=True,
-    label=r"Data  $ \mu e/\gamma$",
-)
+# data_mueg = data.add_process(
+#     name="data_mueg",
+#     id=90,
+#     is_data=True,
+#     label=r"Data  $ \mu e/\gamma$",
+# )
 
 data_jetht = data.add_process(
     name="data_jetht",
