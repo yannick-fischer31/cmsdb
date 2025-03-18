@@ -1,3 +1,12 @@
+# coding: utf-8
+
+"""
+A->ZH->llttbar MC Datasets
+"""
+
+import cmsdb.processes as procs
+from cmsdb.campaigns.run3_2022_preEE_nano_v12 import campaign_run3_2022_preEE_nano_v12 as cpn
+
 #MA 1000, MH: 330
 cpn.add_dataset(
     name="azh_htt_zll_a1000_h330_amcatnlo",
