@@ -94,13 +94,14 @@ tt_fh = tt.add_process(
 # single-top
 #
 # using updated tables from 2022
-# t- and tw-channel: https://twiki.cern.ch/twiki/bin/view/LHCPhysics/SingleTopNNLORef?rev=20#Predictions_for_top_quark_produc  # noqa
-# s-channel: https://twiki.cern.ch/twiki/bin/view/LHCPhysics/SingleTopRefXsec?rev=36#Single_top_s_channel_cross_secti
-# for the tW-channel, the t and tbar channels contribute equally as stated in
-# Ref https://twiki.cern.ch/twiki/bin/view/LHCPhysics/SingleTopRefXsec?rev=36#Single_top_Wt_channel_cross_sect
-#
-# 13 TeV s-channel cross sections from here:
-# https://twiki.cern.ch/twiki/bin/viewauth/CMS/SingleTopSigma?rev=12#Single_Top_Cross_sections_at_13?rev=12
+# t- and tw-channel:
+#   - https://twiki.cern.ch/twiki/bin/view/LHCPhysics/SingleTopNNLORef?rev=20#Predictions_for_top_quark_produc  # noqa
+# s-channel:
+#   - https://twiki.cern.ch/twiki/bin/view/LHCPhysics/SingleTopNNLORef?rev=21 (NNLO)
+#   - we used NLO before from https://twiki.cern.ch/twiki/bin/view/LHCPhysics/SingleTopRefXsec?rev=36#Single_top_s_channel_cross_secti  # noqa
+# tW-channel:
+#   - the t and tbar channels contribute equally as stated in
+#   - https://twiki.cern.ch/twiki/bin/view/LHCPhysics/SingleTopRefXsec?rev=36#Single_top_Wt_channel_cross_sect
 
 st = Process(
     name="st",
@@ -253,20 +254,14 @@ st_schannel = st.add_process(
     id=2300,
     label=f"{st.label}, s-channel",
     xsecs={
-        13: Number(10.32, {
-            "scale": (0.29, 0.24),
-            "pdf": 0.27,
-            "mtop": (0.23, 0.22),
-            "E_beam": 0.01,
+        # only scale uncertainty is given in the twiki
+        # https://twiki.cern.ch/twiki/bin/view/LHCPhysics/SingleTopNNLORef?rev=21
+        13: Number(11.073, {
+            "scale": (0.058, 0.034),
         }),
-        13.6: Number(7.246, {
+        13.6: Number(11.778, {
             "scale": (0.059, 0.043),
         }),
-        # only scale uncertainty is given in the twiki
-        # https://twiki.cern.ch/twiki/bin/view/LHCPhysics/SingleTopNNLORef?rev=20
-        # TODO: update after final calculations
-        # no value for 13.6 in NLO twiki
-        # https://twiki.cern.ch/twiki/bin/view/LHCPhysics/SingleTopRefXsec?rev=36
     },
 )
 
@@ -286,15 +281,21 @@ st_schannel_t = st_schannel.add_process(
     name="st_schannel_t",
     id=2310,
     xsecs={
-        13: Number(6.35, {
-            "scale": (0.18, 0.15),
-            "pdf": 0.14,
-            "mtop": (0.14, 0.13),
-            "E_beam": 0.01,
+        # https://twiki.cern.ch/twiki/bin/view/LHCPhysics/SingleTopNNLORef?rev=21
+        # no scale uncertainties given for t/tbar subchannels, so assume 100% correlation and split
+        # scale uncertainty on sum of t + tbar accordingly
+        13: Number(6.828, {
+            "scale": tuple(
+                tot * 6.828 / st_schannel.get_xsec(13).n
+                for tot in st_schannel.get_xsec(13).u("scale")
+            ),
         }),
-        # TODO: 13.6 TeV xsecs
-        # not available yet in
-        # https://twiki.cern.ch/twiki/bin/view/LHCPhysics/SingleTopNNLORef?rev=20
+        13.6: Number(7.244, {
+            "scale": tuple(
+                tot * 7.244 / st_schannel.get_xsec(13.6).n
+                for tot in st_schannel.get_xsec(13.6).u("scale")
+            ),
+        }),
     },
 )
 
@@ -314,15 +315,21 @@ st_schannel_tbar = st_schannel.add_process(
     name="st_schannel_tbar",
     id=2320,
     xsecs={
-        13: Number(3.97, {
-            "scale": (0.11, 0.09),
-            "pdf": 0.15,
-            "mtop": 0.09,
-            "E_beam": 0.01,
+        # https://twiki.cern.ch/twiki/bin/view/LHCPhysics/SingleTopNNLORef?rev=21
+        # no scale uncertainties given for t/tbar subchannels, so assume 100% correlation and split
+        # scale uncertainty on sum of t + tbar accordingly
+        13: Number(4.245, {
+            "scale": tuple(
+                tot * 4.245 / st_schannel.get_xsec(13).n
+                for tot in st_schannel.get_xsec(13).u("scale")
+            ),
         }),
-        # TODO: 13.6 TeV xsecs
-        # not available yet in
-        # https://twiki.cern.ch/twiki/bin/view/LHCPhysics/SingleTopNNLORef?rev=20
+        13.6: Number(4.534, {
+            "scale": tuple(
+                tot * 4.534 / st_schannel.get_xsec(13.6).n
+                for tot in st_schannel.get_xsec(13.6).u("scale")
+            ),
+        }),
     },
 )
 
@@ -522,6 +529,9 @@ ttwz = ttvv.add_process(
             Number(2705E-6, {"scale": (0.099j, 0.106j), "pdf": 0.027j}) +
             Number(1179E-6, {"scale": 0.112j, "pdf": 0.037j})
         ),
+        # 13.6 from GenXSecAnalyzer:
+        # https://xsecdb-xsdb-official.app.cern.ch/xsdb/?columns=67108863&currentPage=0&pageSize=10&searchQuery=DAS%3DTTWZ_TuneCP5_13p6TeV_madgraph-pythia8  # noqa
+        13.6: Number(0.002715, {"tot": 5.963e-7}),  # might need a k-factor of 1.13 here
     },
 )
 
@@ -542,7 +552,8 @@ ttww = ttvv.add_process(
 )
 
 # define the combined ttvv cross section as the sum of the three channels
-ttvv.set_xsec(
-    13,
-    ttzz.get_xsec(13) + ttwz.get_xsec(13) + ttww.get_xsec(13),
-)
+for xs in (13, 13.6):
+    ttvv.set_xsec(
+        xs,
+        ttzz.get_xsec(xs) + ttwz.get_xsec(xs) + ttww.get_xsec(xs),
+    )
