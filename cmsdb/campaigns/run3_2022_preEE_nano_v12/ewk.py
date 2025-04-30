@@ -268,6 +268,20 @@ cpn.add_dataset(
         ),
     ),
 )
+cpn.add_dataset(
+    name="dy_m10to50_madgraph",
+    id=14873228,
+    processes=[procs.dy_m10to50],
+    info=dict(
+        nominal=DatasetInfo(
+            keys=[
+                "/DYto2L-4Jets_MLL-10to50_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v1/NANOAODSIM",  # noqa
+            ],
+            n_files=349,
+            n_events=154413937,
+        ),
+    ),
+)
 
 cpn.add_dataset(
     name="dy_m50toinf_1j_madgraph",
