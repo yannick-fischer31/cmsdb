@@ -311,6 +311,7 @@ __all__ = [
 ]
 
 from order import Process
+from scinum import Number
 
 
 azh = Process(
@@ -615,7 +616,7 @@ azh_htt_zll_a1100_h1000 = azh_htt_zll.add_process(
         13: Number(0.1),
         13.6: Number(0.1)
     },  # TODO
-)∏
+)
 
 azh_htt_zll_a1100_h330 = azh_htt_zll.add_process(
     name="azh_htt_zll_a1100_h330",  # h = heavy Higgs boson (not SM Higgs)
@@ -2365,6 +2366,7 @@ azh_htt_zll_a2100_h1100 = azh_htt_zll.add_process(
         13: Number(0.1),
     },  # TODO
 )
+azh_htt_zll_a2100_h1200 = azh_htt_zll.add_process(
     name="azh_htt_zll_a2100_h1200",  # h = heavy Higgs boson (not SM Higgs)
     label=rf"{azh_htt_zll.label} ($m_A = 2100$ GeV, $m_H = 1200$ GeV)",
     id=1000169,

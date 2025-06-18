@@ -5,7 +5,7 @@ Data process definitions.
 """
 
 __all__ = [
-    "data", "data_e", "data_mu", "data_tau", "data_met", "data_pho", "data_egamma", "data_jetht", "data_doublemu", "data_doubleeg", "data_muoneg",
+    "data", "data_e", "data_mu", "data_tau", "data_met", "data_pho", "data_egamma", "data_jetht", "data_doublemu", "data_doubleeg", "data_muoneg", "data_jethtmet"
 
 ]
 

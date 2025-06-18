@@ -53,17 +53,6 @@ cpn.add_dataset(
 
 cpn.add_dataset(
     name="azh_htt_zll_a1000_h500_amcatnlo",
-    id=15100313,
-    processes=[procs.azh_htt_zll_a1000_h500],
-    keys=[
-        "/AToZHToLLTTbar_MA-1000_MH-500_TuneCP5_13p6TeV-amcatnlo-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v1/NANOAODSIM",  # noqa
-    ],
-    n_files=2,
-    n_events=32000,
-)
-
-cpn.add_dataset(
-    name="azh_htt_zll_a1000_h500_amcatnlo",
     id=15171498,
     processes=[procs.azh_htt_zll_a1000_h500],
     keys=[
