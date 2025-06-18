@@ -5,7 +5,7 @@ A->ZH->llttbar MC Datasets
 """
 
 import cmsdb.processes as procs
-from cmsdb.campaigns.run3_2022_preEE_nano_v12 import campaign_run3_2022_preEE_nano_v12 as cpn
+from cmsdb.campaigns.run3_2023_preBPix_nano_v12 import campaign_run3_2023_preBPix_nano_v12 as cpn
 
 cpn.add_dataset(
     name="azh_htt_zll_a1000_h330_amcatnlo",
